@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Calculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.css">
+  <style type="text/css">
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8" style="background-color:lavender;">
+      <form action="#" name="calform">
+      <div class="row" style="padding: 20px;">
+        <div class="col-sm-12">
+         <div class="col-sm-12" style="background-color: #fff;">
+          <span id="display"></span>
+         </div>
+         <input id="my-input" type="text" class="form-control" name="calculation-string" maxlength="10" value="0" disabled />
+         <!-- <input type="text" class="form-control" name="calculation-string" id="my-input" value="0" style="height: 50px; text-align: right; font-style: bold; font-size: 40px; border: none;" maxlength="10" disabled> -->
+         <span id="error"></span>
+        </div>
+        <div class="col-sm-12" style="margin-top: 15px;">
+            <button class="btn btn-info col-xs-2 operator" value="%"> % </button>
+              <button class="btn btn-info col-xs-2 command" value="CE"> CE </button>
+                <button class="btn btn-info col-xs-2 command" value="AC"> C </button>
+              <button class="btn btn-info col-xs-2 command" value="del">DEL</button>
+            <button class="btn btn-info col-xs-2 operator" value="/"> / </button>
+
+            <button class="btn btn-info col-xs-2 operator" value="√"> &#8730; </button>
+              <button class="btn btn-info col-xs-2 number" value="7"> 7 </button>
+                <button class="btn btn-info col-xs-2 number" value="8"> 8 </button>
+              <button class="btn btn-info col-xs-2 number" value="9"> 9 </button>
+            <button class="btn btn-info col-xs-2 operator" value="x"> x </button>
+           
+        
+            <button class="btn btn-info col-xs-2" value="SQR"> x<sup>2</sup></button>
+              <button class="btn btn-info col-xs-2 number" value="4"> 4 </button>
+                <button class="btn btn-info col-xs-2 number" value="5"> 5 </button>
+              <button class="btn btn-info col-xs-2 number" value="6"> 6 </button>
+            <button class="btn btn-info col-xs-2 operator" value="+"> + </button>
+       
+        
+            <button class="btn btn-info col-xs-2" value="CUB">x<sup>3</sup></button>
+              <button class="btn btn-info col-xs-2 number" value="1"> 1 </button>
+                <button class="btn btn-info col-xs-2 number" value="2"> 2 </button>
+              <button class="btn btn-info col-xs-2 number" value="3"> 3 </button>
+            <button class="btn btn-info col-xs-2 operator" value="-"> - </button>
+           
+
+            <button class="btn btn-info col-xs-2" value="FACT"> x! </button>
+              <button class="btn btn-info col-xs-2" value="pm"> &#177; </button>
+                <button class="btn btn-info col-xs-2 number" value="0"> 0 </button>
+              <button class="btn btn-info col-xs-2 punctuation" value="."> . </button>
+            <button class="btn btn-info col-xs-2 operator" value="equals"> = </button>
+        </div>
+      </div>
+    </form>
+    </div>
+    <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
+  </div>
+</div>
+</body>
+</html>
