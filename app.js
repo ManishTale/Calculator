@@ -27,6 +27,20 @@ let calculator = {
         // console.log(number);
         return number;
     },
+    // function to get operator on screen 
+    getOperator: function(event){
+        // switch case statement
+        switch(event.target.value){
+            case "+": this.operator = " + "; break;
+            case "-": this.operator = " - "; break;
+            case "x": this.operator = " x "; break;
+            case "/": this.operator = " / "; break;
+            case "%": this.operator = " % "; break;
+        }
+        // display operator
+        this.input.value = this.operator;
+        return this.operator;
+    },
 }
 
 // EventListener on onclick event
@@ -36,5 +50,10 @@ document.addEventListener('click', function (event) {
 
         let number = calculator.getNumber();
         // console.log(number);
+    }
+    // event to get operator
+    else if(event.target.classList.contains('operator')){
+        let operator = calculator.getOperator(event);
+
     }
 }, false);
