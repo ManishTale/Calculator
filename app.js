@@ -7,6 +7,9 @@ let calculator = {
     // Select the all number button value
     numbers: document.querySelectorAll('.number'),
 
+    // Select the operator
+    operators: document.querySelectorAll('.operator'),
+
     // called the function by EventListener to get valye
     getNumber: function(){
 
