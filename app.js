@@ -5,7 +5,7 @@ let calculator = {
     input: document.querySelector('#my-input'),
 
     // Select the all number button value
-    numbers: document.querySelectorAll('#number'),
+    numbers: document.querySelectorAll('.number'),
 
     // called the function by EventListener to get valye
     getNumber: function(){
