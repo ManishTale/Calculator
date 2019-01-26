@@ -19,6 +19,29 @@ let calculator = {
     operator: "",
     numberB: "",
 
+    addToCalculation : function(value) {
+        //for positive numberA        
+        if(!isNaN(value) && this.operator == ""){
+            this.numberA += value;  
+        }
+
+        // for negative numberA
+        else if(!isNaN(value) && this.numberA == "" && (this.operator == "" || this.numberB == "")){
+            this.numberA = -value;
+            this.operator = "";
+        }
+        
+        // for operator
+        else if(isNaN(value)){
+            this.operator = value;
+        }
+        
+        // for numberB 
+        else if(!isNaN(value) && this.numberA != ""){
+            this.numberB  += value;
+        }   
+    }, 
+
     // called the function by EventListener to get valye
     getNumber: function(){
 
@@ -48,8 +71,22 @@ let calculator = {
             case "/": this.operator = " / "; break;
             case "%": this.operator = " % "; break;
         }
+
+        if(this.numberA == "")
+        {
+            if(this.operator != ' - '){
+                return this.operator = "";
+            }
+            else{
+
+            }
+        }
         // display operator
-        this.input.value = this.operator;
+        if(this.operator != " √ "){
+            this.input.value = this.operator;
+            this.input.value = this.numberA + this.operator;
+        }
+
         return this.operator;
     },
     // delete last one digit from display
@@ -121,11 +158,15 @@ document.addEventListener('click', function (event) {
     if(event.target.classList.contains('number')){
 
         let number = calculator.getNumber();
+        // get number to calculate
+        calculator.addToCalculation(number);
         // console.log(number);
     }
     // event to get operator
     else if(event.target.classList.contains('operator')){
         let operator = calculator.getOperator(event);
+        // get operator to calculate
+        calculator.addToCalculation(operator);
 
     }
      // event to Delete last one digit 
