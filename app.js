@@ -18,6 +18,8 @@ let calculator = {
     numberA: "",
     operator: "",
     numberB: "",
+    isNumberADecimal: false,
+    isNumberBDecimal: false,
 
     addToCalculation : function(value) {
         //for positive numberA        
@@ -173,6 +175,26 @@ let calculator = {
         this.input.value = 0;
         this.numberA = this.numberB = this.operator = "";
     },
+    // addition 
+    sum: function(numA, numB){
+        return numA + numB;
+    },
+    // subtraction
+    subtract: function(numA, numB){
+        return numA - numB;
+    },
+    //multiplicaton
+    multiply: function(numA, numB){
+        return numA * numB;
+    },
+    // Division
+    divide: function(numA, numB){
+        return numA / numB;
+    },
+    // percentage
+    getPercent: function(numA, numB){
+        return (numA / 100) * numB;
+    }
 }
 
 // EventListener on onclick event
@@ -205,4 +227,42 @@ document.addEventListener('click', function (event) {
     else if(event.target.classList.contains('punctuation')){
         calculator.addDecimalDot();
     }
+    // event to operate operation
+    if((calculator.numberA != "" && 
+        calculator.operator != "" && 
+        calculator.numberB != "") && 
+        (event.target.classList.contains('operator') || (event.target.value === 'equals'))){
+    
+        calculator.numberA += "";            
+        calculator.numberB += "";      
+            // parses a string and returns a floating point number.
+        var tempA = parseFloat(calculator.numberA);
+            var tempB = parseFloat(calculator.numberB);
+            var result = "";  
+            // checks switch statement condition to perform operation
+            switch(calculator.operator.trim()){
+                case "+": result = calculator.sum(tempA, tempB); break;
+                case "-": result = calculator.subtract(tempA, tempB); break;
+                case "x": result = calculator.multiply(tempA, tempB); break;
+                case "/": result = calculator.divide(tempA, tempB); break;
+                case "%": result = calculator.getPercent(tempA, tempB); break;
+                default: result = "";
+            }
+    // get result om equals to
+            if(event.target.value === 'equals'){
+                calculator.numberA = result;
+                calculator.operator = "";
+                calculator.numberB = "";
+                let vre = calculator.input.value = result;
+                // console.log(vre);
+            }
+            // get result after clicking operator
+            calculator.numberA = result;
+            calculator.operator = calculator.getOperator(event);
+            calculator.numberB = "";
+            calculator.input.value = result + calculator.operator;
+    }
+
+
+
 }, false);
