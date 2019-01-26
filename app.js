@@ -108,6 +108,11 @@ let calculator = {
             this.input.value = calc.slice(0, last - 1);    
         }
     },
+    // function to clear all
+    cleanAll: function(){
+        this.input.value = 0;
+        this.numberA = this.numberB = this.operator = "";
+    },
 }
 
 // EventListener on onclick event
@@ -127,6 +132,10 @@ document.addEventListener('click', function (event) {
     else if(event.target.classList.contains('command')){
         if(event.target.value == 'del'){
             calculator.deleteLastOne();
+        }
+        // Clear all 
+        if(event.target.value == 'AC'){
+            calculator.cleanAll();
         }
     }
 }, false);
