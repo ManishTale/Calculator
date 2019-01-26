@@ -9,6 +9,15 @@ let calculator = {
 
     // Select the operator
     operators: document.querySelectorAll('.operator'),
+    
+    // Select the operator
+    commands: document.querySelectorAll('.command'),
+
+    //calculation variables 
+    // Globa variable
+    numberA: "",
+    operator: "",
+    numberB: "",
 
     // called the function by EventListener to get valye
     getNumber: function(){
@@ -22,7 +31,6 @@ let calculator = {
         else{
             this.input.value += event.target.value; 
 
-            // console.log(this.input.value);
         }
         // add number multiple times or repete
         number = event.target.value + "";
@@ -44,6 +52,62 @@ let calculator = {
         this.input.value = this.operator;
         return this.operator;
     },
+    // delete last one digit from display
+    deleteLastOne: function(){
+        
+        //checks display value is zero it will return back
+        if(this.input.value == '0') { return; }
+
+        // check display is not empty i.e it may contain numbers and operators
+        if(this.numberA != "" && this.operator == "" && this.numberB == ""){
+            let calc = this.numberA + "";
+
+            //length of the string
+            let last = calc.length;
+
+            // slice one number from last
+            this.numberA = calc.slice(0, last - 1);
+            
+            // does not contain single value will show 0 or null
+            if(this.numberA / this.numberA != 1){
+                this.input.value = 0;
+                this.numberA = "";
+                return;
+            }
+        }
+        // check numberA and operator is not empty but numberB is empty 
+        else if(this.numberA != "" && this.operator != "" && this.numberB == ""){
+            this.operator = "";
+        
+            // return remaining value
+            this.input.value = this.numberA;
+            return;
+        }
+
+        // check operator and numberB not empty
+        else if(this.operator != "" && this.numberB != ""){
+            let calc = this.numberB + "";
+            let last = calc.length;
+
+            // slice numberB  
+            this.numberB = calc.slice(0, last - 1);
+
+            if(this.numberB / this.numberB != 1) { 
+                this.numberB = "";
+            }
+        }
+
+        let calc = this.input.value + "";
+        let last = calc.length;
+
+        // remove last digit from total length of string
+        if(this.input.value[last - 1] == " "){
+            this.input.value = calc.slice(0, last - 3);    
+        }
+        else{
+            this.input.value = calc.slice(0, last - 1);    
+        }
+    },
 }
 
 // EventListener on onclick event
@@ -58,5 +122,11 @@ document.addEventListener('click', function (event) {
     else if(event.target.classList.contains('operator')){
         let operator = calculator.getOperator(event);
 
+    }
+     // event to Delete last one digit 
+    else if(event.target.classList.contains('command')){
+        if(event.target.value == 'del'){
+            calculator.deleteLastOne();
+        }
     }
 }, false);
