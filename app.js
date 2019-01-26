@@ -170,7 +170,18 @@ let calculator = {
             this.input.value = calc.slice(0, last - 1);    
         }
     },
+    // convert into decimal
+    convertinToDecimal: function(number){
+        let point = number.indexOf('.');
+        let last = number.length;
+        
+        let leftPoint = number.slice(0, point);
+        let rightPoint = number.slice(point, last);
 
+        return (leftPoint * 1.0) + (rightPoint / 1);
+    },
+    
+    // SquareRoot
     squareRoot : function(numA){
         if(this.numberA != "" && this.numberB == ""){
             let result = Math.sqrt(numA);
@@ -181,6 +192,8 @@ let calculator = {
             return this.input.value = result;
         }
     },
+
+    
 
     // function to clear all
     cleanAll: function(){
@@ -248,11 +261,23 @@ document.addEventListener('click', function (event) {
         (event.target.classList.contains('operator') || (event.target.value === 'equals'))){
     
         calculator.numberA += "";            
-        calculator.numberB += "";      
-            // parses a string and returns a floating point number.
-        var tempA = parseFloat(calculator.numberA);
+        calculator.numberB += ""; 
+
+            if(calculator.isNumberADecimal || calculator.isNumberBDecimal){
+            if(calculator.isNumberADecimal){
+                var tempA = calculator.convertinToDecimal(calculator.numberA);
+            }    
+            if(calculator.isNumberBDecimal){
+                var tempB = calculator.convertinToDecimal(calculator.numberB);
+            }
+        }
+        else {
+
+         // parses a string and returns a floating point number.
+            var tempA = parseFloat(calculator.numberA);
             var tempB = parseFloat(calculator.numberB);
-            var result = "";  
+            var result = ""; 
+        } 
             // checks switch statement condition to perform operation
             switch(calculator.operator.trim()){
                 case "+": result = calculator.sum(tempA, tempB); break;
