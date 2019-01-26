@@ -89,6 +89,29 @@ let calculator = {
 
         return this.operator;
     },
+ // add decimal dot 
+    addDecimalDot : function(){
+        if(this.numberA != "" && this.operator == ""){
+            if(this.numberA.includes('.')){ 
+                return; 
+            }
+            else{
+                this.isNumberADecimal = true;
+                this.input.value += '.';
+                this.numberA += '.';
+            }
+        }
+        else if(this.operator != "" && this.numberB != ""){
+            if(this.numberB.includes('.')){ 
+                return; 
+            }
+            else{
+                this.isNumberBDecimal = true;
+                this.input.value += '.';
+                this.numberB += '.';
+            }
+        }
+    },
     // delete last one digit from display
     deleteLastOne: function(){
         
@@ -178,5 +201,8 @@ document.addEventListener('click', function (event) {
         if(event.target.value == 'AC'){
             calculator.cleanAll();
         }
+    }
+    else if(event.target.classList.contains('punctuation')){
+        calculator.addDecimalDot();
     }
 }, false);
