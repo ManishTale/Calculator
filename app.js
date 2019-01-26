@@ -180,6 +180,11 @@ let calculator = {
 
         return (leftPoint * 1.0) + (rightPoint / 1);
     },
+    // for non decimal value
+    NoDecimal : function(){
+        this.isNumberADecimal = false;
+        this.isNumberBDecimal = false;
+    },
     
     // SquareRoot
     squareRoot : function(numA){
@@ -262,7 +267,11 @@ document.addEventListener('click', function (event) {
     
         calculator.numberA += "";            
         calculator.numberB += ""; 
-
+            // condition for nondecimal value
+        if(!calculator.numberA.includes('.') || !calculator.numberB.includes('.')){
+            calculator.NoDecimal();
+        }
+        // condition to convert into decimal value
             if(calculator.isNumberADecimal || calculator.isNumberBDecimal){
             if(calculator.isNumberADecimal){
                 var tempA = calculator.convertinToDecimal(calculator.numberA);
