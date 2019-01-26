@@ -170,6 +170,18 @@ let calculator = {
             this.input.value = calc.slice(0, last - 1);    
         }
     },
+
+    squareRoot : function(numA){
+        if(this.numberA != "" && this.numberB == ""){
+            let result = Math.sqrt(numA);
+
+            this.numberA = result;
+            this.operator = "";
+            this.numberB = "";
+            return this.input.value = result;
+        }
+    },
+
     // function to clear all
     cleanAll: function(){
         this.input.value = 0;
@@ -212,7 +224,9 @@ document.addEventListener('click', function (event) {
         let operator = calculator.getOperator(event);
         // get operator to calculate
         calculator.addToCalculation(operator);
-
+        if(event.target.value == "√"){
+            calculator.squareRoot(calculator.numberA);
+        }
     }
      // event to Delete last one digit 
     else if(event.target.classList.contains('command')){
@@ -256,13 +270,20 @@ document.addEventListener('click', function (event) {
                 let vre = calculator.input.value = result;
                 // console.log(vre);
             }
+            else if(event.target.classList.contains('operator')){
+                if(event.target.value == "√"){
+                    calculator.numberA = result;
+                    calculator.numberB = "";
+                    calculator.squareRoot(calculator.numberA);
+                    return;
+                }
             // get result after clicking operator
             calculator.numberA = result;
             calculator.operator = calculator.getOperator(event);
             calculator.numberB = "";
             calculator.input.value = result + calculator.operator;
     }
-
+        }
 
 
 }, false);
