@@ -72,6 +72,7 @@ let calculator = {
             case "x": this.operator = " x "; break;
             case "/": this.operator = " / "; break;
             case "%": this.operator = " % "; break;
+            case "^": this.operator = " ^ "; break;
         }
 
         if(this.numberA == "")
@@ -273,6 +274,10 @@ let calculator = {
     // percentage
     getPercent: function(numA, numB){
         return (numA / 100) * numB;
+    },
+    // Exponent
+    Exponent: function(numA, numB){
+        return Math.pow(numA, numB);
     }
 }
 
@@ -355,6 +360,7 @@ document.addEventListener('click', function (event) {
                 case "x": result = calculator.multiply(tempA, tempB); break;
                 case "/": result = calculator.divide(tempA, tempB); break;
                 case "%": result = calculator.getPercent(tempA, tempB); break;
+                case "^": result = calculator.Exponent(tempA, tempB); break;
                 default: result = "";
             }
     // get result om equals to
