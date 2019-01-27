@@ -88,6 +88,10 @@ let calculator = {
             this.input.value = this.operator;
             this.input.value = this.numberA + this.operator;
         }
+        // define square operator
+        else if (this.operator != " s ") {
+            this.input.value = this.numberA + this.operator;
+        }
 
         return this.operator;
     },
@@ -197,8 +201,17 @@ let calculator = {
             return this.input.value = result;
         }
     },
+    // function to get square
+    Square : function(numA){
+        if(this.numberA != "" && this.numberB == ""){
+            let result = numA * numA;
 
-    
+            this.numberA = result;
+            this.operator = "";
+            this.numberB = "";
+            return this.input.value = result;
+        }
+    },
 
     // function to clear all
     cleanAll: function(){
@@ -244,6 +257,10 @@ document.addEventListener('click', function (event) {
         calculator.addToCalculation(operator);
         if(event.target.value == "√"){
             calculator.squareRoot(calculator.numberA);
+        }
+        // get square root operatoe to calculate
+        else if(event.target.value == "p"){
+            calculator.Square(calculator.numberA);
         }
     }
      // event to Delete last one digit 
@@ -305,10 +322,18 @@ document.addEventListener('click', function (event) {
                 // console.log(vre);
             }
             else if(event.target.classList.contains('operator')){
+            // return square root
                 if(event.target.value == "√"){
                     calculator.numberA = result;
                     calculator.numberB = "";
                     calculator.squareRoot(calculator.numberA);
+                    return;
+                }
+                // return square
+                else if(event.target.value == "p"){
+                    calculator.numberA = result;
+                    calculator.numberB = "";
+                    calculator.Square(calculator.numberA);
                     return;
                 }
             // get result after clicking operator
