@@ -92,6 +92,10 @@ let calculator = {
         else if (this.operator != " s ") {
             this.input.value = this.numberA + this.operator;
         }
+        // define cube operator
+        else if (this.operator != " c ") {
+            this.input.value = this.numberA + this.operator;
+        }
 
         return this.operator;
     },
@@ -213,6 +217,18 @@ let calculator = {
         }
     },
 
+    // function to get cube
+    Cube : function(numA){
+        if(this.numberA != "" && this.numberB == ""){
+            let result = numA * numA * numA;
+
+            this.numberA = result;
+            this.operator = "";
+            this.numberB = "";
+            return this.input.value = result;
+        }
+    },
+
     // function to clear all
     cleanAll: function(){
         this.input.value = 0;
@@ -253,14 +269,18 @@ document.addEventListener('click', function (event) {
     // event to get operator
     else if(event.target.classList.contains('operator')){
         let operator = calculator.getOperator(event);
-        // get operator to calculate
+        // get square root operator to calculate
         calculator.addToCalculation(operator);
         if(event.target.value == "√"){
             calculator.squareRoot(calculator.numberA);
         }
-        // get square root operatoe to calculate
+        // get square operatoe to calculate
         else if(event.target.value == "p"){
             calculator.Square(calculator.numberA);
+        }
+        // get cube to calculate
+        else if(event.target.value == "c"){
+            calculator.Cube(calculator.numberA);
         }
     }
      // event to Delete last one digit 
@@ -334,6 +354,13 @@ document.addEventListener('click', function (event) {
                     calculator.numberA = result;
                     calculator.numberB = "";
                     calculator.Square(calculator.numberA);
+                    return;
+                }
+                // return cube
+                else if(event.target.value == "c"){
+                    calculator.numberA = result;
+                    calculator.numberB = "";
+                    calculator.Cube(calculator.numberA);
                     return;
                 }
             // get result after clicking operator
