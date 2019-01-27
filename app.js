@@ -96,6 +96,10 @@ let calculator = {
         else if (this.operator != " c ") {
             this.input.value = this.numberA + this.operator;
         }
+        // define factorial operator
+        else if (this.operator != " ! ") {
+            this.input.value = this.numberA + this.operator;
+        }
 
         return this.operator;
     },
@@ -228,6 +232,22 @@ let calculator = {
             return this.input.value = result;
         }
     },
+    // function to get factorial
+    Factorial : function(numA){
+        if((this.numberA != "" || this.numberA == 1) && this.numberB == ""){
+            let fact = 1;
+                for(i=1; i<=numA; i++)  
+                {
+                fact= fact*i;
+                }
+            let result = fact;
+
+            this.numberA = result;
+            this.operator = "";
+            this.numberB = "";
+            return this.input.value = result;
+        }
+    },
 
     // function to clear all
     cleanAll: function(){
@@ -281,6 +301,10 @@ document.addEventListener('click', function (event) {
         // get cube to calculate
         else if(event.target.value == "c"){
             calculator.Cube(calculator.numberA);
+        }
+        // get factorial to calculate
+        else if(event.target.value == "!"){
+            calculator.Factorial(calculator.numberA);
         }
     }
      // event to Delete last one digit 
@@ -361,6 +385,12 @@ document.addEventListener('click', function (event) {
                     calculator.numberA = result;
                     calculator.numberB = "";
                     calculator.Cube(calculator.numberA);
+                    return;
+                }
+                else if(event.target.value == "!"){
+                    calculator.numberA = result;
+                    calculator.numberB = "";
+                    calculator.Factorial(calculator.numberA);
                     return;
                 }
             // get result after clicking operator
