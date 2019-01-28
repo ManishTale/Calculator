@@ -369,7 +369,9 @@ document.addEventListener('click', function (event) {
                 calculator.operator = "";
                 calculator.numberB = "";
                 let vre = calculator.input.value = result;
-                // console.log(vre);
+            gt = document.querySelector('.list').innerHTML += result +"<br>";
+            localStorage.setItem('output', JSON.stringify( gt )  );
+            rt = localStorage.getItem('output');
             }
             else if(event.target.classList.contains('operator')){
             // return square root
